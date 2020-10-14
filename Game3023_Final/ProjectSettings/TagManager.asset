@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - City
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3170756551
+    locked: 0
+  - name: HouseDetails(Background)
+    uniqueID: 1226385875
+    locked: 0
+  - name: Foreground
+    uniqueID: 1209432699
+    locked: 0
+  - name: HouseDetails(Foreground)
+    uniqueID: 2284939425
+    locked: 0
+  - name: Details
+    uniqueID: 1810010745
+    locked: 0
+  - name: TallGrass
+    uniqueID: 1170358811
+    locked: 0
+  - name: Player
+    uniqueID: 795020799
     locked: 0
