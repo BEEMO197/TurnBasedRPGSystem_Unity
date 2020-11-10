@@ -5,16 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCharacterController : MonoBehaviour
 {
-    List<int> wew;
-
     [SerializeField]
     float speed = 5;
 
     [SerializeField]
     public Rigidbody2D rigidBody;
 
+    [SerializeField]
+    private Animator animator;
+ 
+    [SerializeField]
+    private SpriteRenderer renderer; 
+
     public bool moveable = true;
-    // Update is called once per frame
+    void Start()
+    {
+        renderer = GetComponent<SpriteRenderer>(); 
+    }
     void Update()
     {
         Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -39,6 +46,30 @@ public class PlayerCharacterController : MonoBehaviour
         if (moveable)
         {
             rigidBody.velocity = movementVector;
+        }
+
+        UpdateAnimator(movementVector);
+
+    }
+
+    void UpdateAnimator(Vector2 movementVector)
+    {
+        if(movementVector.x > 0)
+        {
+            renderer.flipX = false; 
+        } 
+        else if (movementVector.x < 0)
+        {
+            renderer.flipX = true; 
+        }
+
+        if(movementVector.sqrMagnitude != 0)
+        {
+            animator.SetInteger("runState", 1);
+        } 
+        else 
+        {
+            animator.SetInteger("runState", 0);
         }
     }
 }
