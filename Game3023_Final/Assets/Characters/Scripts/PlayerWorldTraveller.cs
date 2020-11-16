@@ -22,6 +22,8 @@ public class PlayerWorldTraveller : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+
+        Debug.Log("Scene Change!");
         if(spawnLocation != null)
         {
             SpawnPoint p = FindObjectOfType<SpawnPoint>();

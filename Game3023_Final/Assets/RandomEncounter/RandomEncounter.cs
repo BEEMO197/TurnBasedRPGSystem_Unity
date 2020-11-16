@@ -23,16 +23,18 @@ public class RandomEncounter : MonoBehaviour
     void OnTriggerStay2D(Collider2D collider)
     {
         Debug.Log("Random Battle");
-        Collider2D col = collider;
-        PlayerCharacterController pcc = col.GetComponent<PlayerCharacterController>();
         
-        if(pcc.rigidBody.velocity.magnitude > 0.1f)
+        if(collider.gameObject.GetComponent<PlayerCharacterController>())
         {
-            if(Random.Range(1, 100) == 5)
+            if(collider.gameObject.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > 0.2)
             {
-                SceneManager.LoadScene("Battle Scene");
-                Debug.Log("Random Battle");
+                if(Random.Range(1, 100) == 5)
+                {
+                    SceneManager.LoadScene("Battle Scene");
+                    Debug.Log("Random Battle");
+                }
             }
         }
+        
     }
 }

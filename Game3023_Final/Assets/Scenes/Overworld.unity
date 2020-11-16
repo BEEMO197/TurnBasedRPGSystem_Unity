@@ -55661,7 +55661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 4
-  m_BlendStyleIndex: 1
+  m_BlendStyleIndex: 3
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.6273585, g: 0.6407616, b: 1, a: 1}
   m_Intensity: 0.75
@@ -80405,6 +80405,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9125143454261431644, guid: f2fac4ff430a7c948affc4f9fd4dfdf8, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 4918998278753781346, guid: 5546d981b9bd4d846a114899a7ffb58c, type: 3}
     - target: {fileID: 9125143454261431645, guid: f2fac4ff430a7c948affc4f9fd4dfdf8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.68
@@ -80456,6 +80460,10 @@ PrefabInstance:
     - target: {fileID: 9125143454261431647, guid: f2fac4ff430a7c948affc4f9fd4dfdf8, type: 3}
       propertyPath: m_TagString
       value: City
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125143454261431647, guid: f2fac4ff430a7c948affc4f9fd4dfdf8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2fac4ff430a7c948affc4f9fd4dfdf8, type: 3}
