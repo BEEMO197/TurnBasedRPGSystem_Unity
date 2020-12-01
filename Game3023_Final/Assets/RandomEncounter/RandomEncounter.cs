@@ -8,18 +8,6 @@ using UnityEditor.Networking.PlayerConnection;
 
 public class RandomEncounter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerStay2D(Collider2D collider)
     {
         Debug.Log("Random Battle");
@@ -30,7 +18,7 @@ public class RandomEncounter : MonoBehaviour
             {
                 if(Random.Range(1, 100) == 5)
                 {
-                    SceneManager.LoadScene("Battle Scene");
+                    collider.gameObject.GetComponent<EncounterManager>().EnterEncounter();
                     Debug.Log("Random Battle");
                 }
             }

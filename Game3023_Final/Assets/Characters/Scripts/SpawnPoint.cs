@@ -7,15 +7,12 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField]
     GameObject playerPrefab;
 
-    static PlayerCharacterController player = null;
-
-    // Start is called before the first frame update
-    void Start()
+    public static PlayerCharacterController player = null;
+    void Awake()
     {
         if(player == null)
         {
             player = Instantiate(playerPrefab, transform.position, transform.rotation).GetComponent<PlayerCharacterController>();
         }
     }
-
 }

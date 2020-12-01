@@ -23,12 +23,19 @@ public class PlayerWorldTraveller : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
 
-        Debug.Log("Scene Change!");
-        if(spawnLocation != null)
+        Debug.Log("Scene Change Level: "+level);
+        if(level == 1) // 1 == BattleScene
         {
             SpawnPoint p = FindObjectOfType<SpawnPoint>();
-
             transform.position = p.transform.position;
+            GetComponent<SpriteRenderer>().flipX = false; 
+        } 
+        else if (level == 0) // 0 == Overworld
+        {
+            if(GetComponent<EncounterManager>().lastPosition != null)
+            {
+                transform.position = GetComponent<EncounterManager>().lastPosition;
+            } 
         }
     }
 }

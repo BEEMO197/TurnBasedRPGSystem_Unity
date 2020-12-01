@@ -34,13 +34,13 @@ public class PlayerCharacterController : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Battle Scene")
         {
-            moveable = false;
+            //moveable = false;
             movementVector = new Vector2(0.0f, 0.0f);
             rigidBody.velocity = movementVector;
         }
         else if((SceneManager.GetActiveScene().name == "Overworld"))
         {
-            moveable = true;
+            //moveable = true;
         }
 
         if (moveable)
@@ -65,7 +65,12 @@ public class PlayerCharacterController : MonoBehaviour
 
         if(movementVector.sqrMagnitude != 0)
         {
-            animator.SetInteger("runState", 1);
+            if(moveable)
+            {
+                animator.SetInteger("runState", 1);
+            } else {
+                animator.SetInteger("runState", 0);
+            }
         } 
         else 
         {
