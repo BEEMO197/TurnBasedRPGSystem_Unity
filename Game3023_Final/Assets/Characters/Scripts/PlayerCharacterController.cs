@@ -12,10 +12,13 @@ public class PlayerCharacterController : MonoBehaviour
     public Rigidbody2D rigidBody;
 
     [SerializeField]
+    public GameObject cameraGameObject;
+
+    [SerializeField]
     private Animator animator;
  
     [SerializeField]
-    private SpriteRenderer renderer; 
+    private SpriteRenderer renderer;
 
     public bool moveable = true;
     void Start()

@@ -171,6 +171,7 @@ MonoBehaviour:
   rigidBody: {fileID: 4918998278753781353}
   animator: {fileID: 4918998278753781357}
   renderer: {fileID: 4918998278753781356}
+  cameraGameObject: {fileID: 7503296559375176725}
   moveable: 1
 --- !u!114 &2125639799131314563
 MonoBehaviour:
