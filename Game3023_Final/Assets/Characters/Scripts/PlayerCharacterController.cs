@@ -20,9 +20,22 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField]
     private SpriteRenderer renderer;
 
+    [SerializeField]
+    private PlayerSoundsManager.Track tileOn;
+
+    public PlayerSoundsManager.Track prevTileOn;
+
+    [SerializeField]
+    private PlayerSoundsManager playerSoundManager;
+
     public bool moveable = true;
+
+    public Collider2D feetCol;
+
     void Start()
     {
+        tileOn = PlayerSoundsManager.Track.Grass;
+        playerSoundManager = FindObjectOfType<PlayerSoundsManager>();
         renderer = GetComponent<SpriteRenderer>(); 
     }
     void Update()
@@ -71,6 +84,7 @@ public class PlayerCharacterController : MonoBehaviour
             if(moveable)
             {
                 animator.SetInteger("runState", 1);
+                playerSoundManager.PlayAudio();
             } else {
                 animator.SetInteger("runState", 0);
             }
@@ -79,5 +93,12 @@ public class PlayerCharacterController : MonoBehaviour
         {
             animator.SetInteger("runState", 0);
         }
+    }
+
+    public void ChangeTileOn(PlayerSoundsManager.Track tile)
+    {
+        prevTileOn = tileOn;
+        tileOn = tile;
+        playerSoundManager.SetTrack(tileOn);
     }
 }

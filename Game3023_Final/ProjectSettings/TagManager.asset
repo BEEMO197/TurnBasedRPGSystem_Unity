@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - City
+  - Road
+  - Grass
+  - TallGrass
   layers:
   - Default
   - TransparentFX
