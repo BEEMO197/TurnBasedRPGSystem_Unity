@@ -194,8 +194,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -49.99997, y: -5.9999924}
-  m_SizeDelta: {x: 100, y: 12}
+  m_AnchoredPosition: {x: -125.3, y: -9.2}
+  m_SizeDelta: {x: 250, y: 18}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &191042184
 CanvasRenderer:
@@ -269,8 +269,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -56.09, y: 0}
-  m_SizeDelta: {x: 12, y: 19.8}
+  m_AnchoredPosition: {x: -131, y: 0}
+  m_SizeDelta: {x: 12, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &570750308
 CanvasRenderer:
@@ -530,8 +530,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1737752236}
-        m_TargetAssemblyTypeName: BattleOptionsController, Assembly-CSharp
+      - m_Target: {fileID: 4918998278753781358}
+        m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
         m_MethodName: ThrowKunai
         m_Mode: 1
         m_Arguments:
@@ -820,9 +820,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1737752236}
-        m_TargetAssemblyTypeName: BattleOptionsController, Assembly-CSharp
-        m_MethodName: AttackButtonBehaviour
+      - m_Target: {fileID: 4918998278753781358}
+        m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
+        m_MethodName: AttackEnemy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -878,8 +878,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 56.09, y: 0}
-  m_SizeDelta: {x: 12, y: 19.8}
+  m_AnchoredPosition: {x: 131, y: 0}
+  m_SizeDelta: {x: 12, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1458050553
 CanvasRenderer:
@@ -1128,8 +1128,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -177, y: 152}
-  m_SizeDelta: {x: 100, y: 19.8}
+  m_AnchoredPosition: {x: -99.4, y: 151.2}
+  m_SizeDelta: {x: 250, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1746298961
 CanvasRenderer:
@@ -1369,9 +1369,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1737752236}
-        m_TargetAssemblyTypeName: BattleOptionsController, Assembly-CSharp
-        m_MethodName: DefendButtonBehaviour
+      - m_Target: {fileID: 4918998278753781358}
+        m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
+        m_MethodName: DefenceUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1564,6 +1564,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   health: 100
+  maxHealth: 100
+  defenceSkill: 0.25
+  accuracySkill: 0.6
+  damage: 25
   rigidBody: {fileID: 4918998278753781353}
   cameraGameObject: {fileID: 7503296559375176725}
   battleMenu: {fileID: 1737752232}

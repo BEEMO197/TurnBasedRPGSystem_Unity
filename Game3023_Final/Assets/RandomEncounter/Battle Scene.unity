@@ -654,7 +654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1127620179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -835,8 +835,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -49.99997, y: -5.9999924}
-  m_SizeDelta: {x: 100, y: 12}
+  m_AnchoredPosition: {x: -125.2, y: -8.8}
+  m_SizeDelta: {x: 250, y: 18}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1242139637
 MonoBehaviour:
@@ -7143,8 +7143,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 56.09, y: 0}
-  m_SizeDelta: {x: 12, y: 19.8}
+  m_AnchoredPosition: {x: 131, y: -0}
+  m_SizeDelta: {x: 12, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1673314955
 MonoBehaviour:
@@ -7221,8 +7221,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -165, y: 154}
-  m_SizeDelta: {x: 100, y: 19.8}
+  m_AnchoredPosition: {x: -104, y: 152.9}
+  m_SizeDelta: {x: 250, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1687007303
 MonoBehaviour:
@@ -7515,8 +7515,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -56.09, y: 0}
-  m_SizeDelta: {x: 12, y: 19.8}
+  m_AnchoredPosition: {x: -131, y: -0}
+  m_SizeDelta: {x: 12, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1907236381
 MonoBehaviour:
@@ -7879,3 +7879,9 @@ MonoBehaviour:
   turnManager: {fileID: 1570965412}
   battleMenu: {fileID: 1127620178}
   action: 0
+  health: 100
+  maxHealth: 100
+  defenceSkill: 0.35
+  accuracySkill: 0.5
+  damage: 50
+  healthBar: {fileID: 1242139635}

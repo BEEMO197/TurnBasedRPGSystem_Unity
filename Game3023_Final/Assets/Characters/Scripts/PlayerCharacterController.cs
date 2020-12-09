@@ -9,7 +9,11 @@ public class PlayerCharacterController : MonoBehaviour
     float speed = 5;
 
     [SerializeField]
-    float health = 100.0f;
+    public float health = 100.0f;
+    public float maxHealth = 100.0f;
+    public float defenceSkill = 0.25f;
+    public float accuracySkill = 0.60f;
+    public float damage = 25.0f;  
 
     [SerializeField]
     public Rigidbody2D rigidBody;
@@ -48,7 +52,8 @@ public class PlayerCharacterController : MonoBehaviour
     {
         tileOn = PlayerSoundsManager.Track.Grass;
         playerSoundManager = PlayerSoundsManager.Instance;
-        renderer = GetComponent<SpriteRenderer>(); 
+        renderer = GetComponent<SpriteRenderer>();
+        UpdateHealthBar(); 
     }
     void Update()
     {
@@ -131,5 +136,85 @@ public class PlayerCharacterController : MonoBehaviour
             Debug.Log("Player Ending Turn");
             turnManager.IsPlayerPhase = false;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= (defenceSkill*damage); 
+        UpdateHealthBar();
+    }
+
+    public void UpdateHealthBar()
+    {
+        healthBar.transform.localScale = new Vector3(health/maxHealth,1,1);
+    }
+
+    public void AttackEnemy()
+    {
+       StartCoroutine(AttackEnemyCoroutine()); 
+    }
+
+    public void DefenceUp()
+    {
+       StartCoroutine(DefenceUpCoroutine()); 
+    }
+
+    public void ThrowKunai()
+    {
+       StartCoroutine(ThrowKunaiCoroutine());
+    }
+
+    IEnumerator AttackEnemyCoroutine()
+    {
+         // Get Enemy
+        if(turnManager.enemy != null)
+        {
+            float hit = Random.Range(0.0f, 1.0f);
+            // Check if hits
+            if(hit <= accuracySkill)
+            {
+                // Apple Damage
+                Debug.Log("Attacking Enemy"); 
+                turnManager.enemy.TakeDamage(damage);
+            } 
+            else 
+            {
+                Debug.Log("Missed Enemy"); 
+
+            }
+        }
+        // Play Animation
+        animator.SetBool("attack", true);
+        yield return new WaitForSeconds(1.5f);
+        animator.SetBool("attack", false); 
+         // Pass Turn
+        EndTurn(); 
+    }
+
+    IEnumerator DefenceUpCoroutine()
+    {
+        Debug.Log("Raising Defence"); 
+        // Increase Defense Skill
+        defenceSkill *= 1.05f;
+        if(defenceSkill >= 0.50f)
+        {
+            defenceSkill = 0.50f; 
+        } 
+        // Play Animation/Particle Effect
+        
+        yield return new WaitForSeconds(5.0f);
+        EndTurn(); 
+    }
+
+    IEnumerator ThrowKunaiCoroutine()
+    {
+        Debug.Log("Throwing Kunai"); 
+          // Apply 10% of Damage Level to Enemy
+        turnManager.enemy.TakeDamage(damage*0.10f);
+        // Play Animation/Particle Effect
+        animator.SetBool("kunai", true);
+        yield return new WaitForSeconds(1.0f);
+        animator.SetBool("kunai", false);
+        EndTurn(); 
     }
 }

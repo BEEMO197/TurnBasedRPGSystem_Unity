@@ -18,7 +18,6 @@ public class TurnManager : MonoBehaviour
             _isPlayerPhase = value;
             if(_isPlayerPhase == false)
             {
-                Player.ToggleBattleMenu(false);
                 enemy.EnableTurn(); 
             } 
             else 
