@@ -6,9 +6,9 @@ public class PlayerSoundsManager : MonoBehaviour
 {
     private PlayerSoundsManager() { }
 
-    static PlayerSoundsManager instance;
+    private static PlayerSoundsManager instance = null;
 
-    public PlayerSoundsManager Instance
+    public static PlayerSoundsManager Instance
     {
         get
         {
@@ -26,10 +26,10 @@ public class PlayerSoundsManager : MonoBehaviour
     }
 
     [SerializeField]
-    AudioSource audioSource;
+    AudioSource audioSource = null;
 
     [SerializeField]
-    AudioClip[] audioTracks;
+    AudioClip[] audioTracks = null;
 
     public enum Track
     {

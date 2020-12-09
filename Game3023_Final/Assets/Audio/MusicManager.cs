@@ -28,10 +28,10 @@ public class MusicManager : MonoBehaviour
 
 
     [SerializeField]
-    AudioSource musicSource; 
+    AudioSource musicSource = null; 
 
     [SerializeField]
-    AudioClip[] musicTracks;
+    AudioClip[] musicTracks = null;
 
     public enum Track
     {

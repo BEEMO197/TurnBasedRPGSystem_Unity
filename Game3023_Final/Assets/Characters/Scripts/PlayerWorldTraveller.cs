@@ -5,14 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerWorldTraveller : MonoBehaviour
 {
-    string spawnLocation = null;
-
-    //Property
-    public string SpawnLocation
-        {
-        get;
-        set;
-        }
+    void Awake()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -20,22 +16,53 @@ public class PlayerWorldTraveller : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void OnLevelWasLoaded(int level)
-    {
+    // private void OnLevelWasLoaded(int level)
+    // {
 
-        Debug.Log("Scene Change Level: "+level);
-        if(level == 1) // 1 == BattleScene
+    //     Debug.Log("Scene Change Level: "+level);
+    //     if(level == 1) // 1 == BattleScene
+    //     {
+    //         SpawnPoint p = FindObjectOfType<SpawnPoint>();
+    //         transform.position = p.transform.position;
+    //         GetComponent<SpriteRenderer>().flipX = false; 
+    //     } 
+    //     else if (level == 0) // 0 == Overworld
+    //     {
+    //         if(GetComponent<EncounterManager>().lastPosition != null)
+    //         {
+    //             transform.position = GetComponent<EncounterManager>().lastPosition;
+    //         } 
+    //     }
+    // }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("On Scene Loaded: "+scene.name);
+
+        if(scene.name == "Battle Scene")
         {
             SpawnPoint p = FindObjectOfType<SpawnPoint>();
             transform.position = p.transform.position;
-            GetComponent<SpriteRenderer>().flipX = false; 
-        } 
-        else if (level == 0) // 0 == Overworld
+            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<PlayerCharacterController>().ToggleBattleMenu(true);
+            FindObjectOfType<TurnManager>().Player = this.gameObject.GetComponent<PlayerCharacterController>();
+            GetComponent<PlayerCharacterController>().turnManager = FindObjectOfType<TurnManager>();
+            GetComponent<PlayerCharacterController>().SetAnimatorBattleFlag(true); 
+             
+        }
+        else if(scene.name == "Overworld")
         {
-            if(GetComponent<EncounterManager>().lastPosition != null)
+            GetComponent<PlayerCharacterController>().ToggleBattleMenu(false);
+            GetComponent<PlayerCharacterController>().SetAnimatorBattleFlag(false);
+            if(GetComponent<EncounterManager>().lastPosition != Vector3.zero)
             {
                 transform.position = GetComponent<EncounterManager>().lastPosition;
             } 
+            else 
+            {
+                SpawnPoint p = FindObjectOfType<SpawnPoint>();
+                transform.position = p.transform.position; 
+            }
         }
     }
 }

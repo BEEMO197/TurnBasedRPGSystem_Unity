@@ -8,6 +8,7 @@ TagManager:
   - Road
   - Grass
   - TallGrass
+  - HealthBar
   layers:
   - Default
   - TransparentFX

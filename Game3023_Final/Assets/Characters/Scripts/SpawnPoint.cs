@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnPoint : MonoBehaviour
 {
     [SerializeField]
-    GameObject playerPrefab;
+    GameObject playerPrefab = null;
 
     public static PlayerCharacterController player = null;
     void Awake()

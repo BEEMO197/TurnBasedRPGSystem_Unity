@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class BattleOptionsController : MonoBehaviour
 {
-    public TurnManager turnManager;
-
     public void AttackButtonBehaviour()
     {
-        Debug.Log("Attacking"); 
+        Debug.Log("Attacking");
+        GetComponentInParent<PlayerCharacterController>().EndTurn(); 
     }
-
     public void DefendButtonBehaviour()
     {
-        Debug.Log("Defending"); 
+        Debug.Log("Defending");
+        GetComponentInParent<PlayerCharacterController>().EndTurn(); 
     }
-
-    public void EndTurnBehaviour()
+    public void ThrowKunai()
     {
-        turnManager.IsPlayerPhase = false; 
+        Debug.Log("Throwing Kunai");
+        GetComponentInParent<PlayerCharacterController>().EndTurn();
     }
 }

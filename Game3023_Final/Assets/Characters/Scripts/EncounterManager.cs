@@ -10,7 +10,7 @@ public class EncounterManager : MonoBehaviour
     public UnityEvent onEnterEncounter;
     public UnityEvent onExitEncounter;
 
-    public Vector3 lastPosition{ get; set; }  
+    public Vector3 lastPosition; 
     public void EnterEncounter()
     {
         StartCoroutine(EnterEncounterCoroutine());
@@ -18,6 +18,7 @@ public class EncounterManager : MonoBehaviour
 
     IEnumerator EnterEncounterCoroutine()
     {
+        Debug.Log("Entering Encounter...");
         onEnterEncounter.Invoke();
         lastPosition = gameObject.transform.position;
         GetComponent<PlayerCharacterController>().moveable = false;   

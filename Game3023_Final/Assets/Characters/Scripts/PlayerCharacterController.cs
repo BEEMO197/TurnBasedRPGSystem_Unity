@@ -9,13 +9,22 @@ public class PlayerCharacterController : MonoBehaviour
     float speed = 5;
 
     [SerializeField]
+    float health = 100.0f;
+
+    [SerializeField]
     public Rigidbody2D rigidBody;
 
     [SerializeField]
     public GameObject cameraGameObject;
 
     [SerializeField]
-    private Animator animator;
+    public GameObject battleMenu;
+
+    [SerializeField]
+    public GameObject healthBar; 
+
+    [SerializeField]
+    private Animator animator = null;
  
     [SerializeField]
     private SpriteRenderer renderer;
@@ -28,6 +37,9 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField]
     private PlayerSoundsManager playerSoundManager;
 
+    [SerializeField]
+    public TurnManager turnManager = null; 
+
     public bool moveable = true;
 
     public Collider2D feetCol;
@@ -35,7 +47,7 @@ public class PlayerCharacterController : MonoBehaviour
     void Start()
     {
         tileOn = PlayerSoundsManager.Track.Grass;
-        playerSoundManager = FindObjectOfType<PlayerSoundsManager>();
+        playerSoundManager = PlayerSoundsManager.Instance;
         renderer = GetComponent<SpriteRenderer>(); 
     }
     void Update()
@@ -54,10 +66,10 @@ public class PlayerCharacterController : MonoBehaviour
             movementVector = new Vector2(0.0f, 0.0f);
             rigidBody.velocity = movementVector;
         }
-        else if((SceneManager.GetActiveScene().name == "Overworld"))
-        {
-            //moveable = true;
-        }
+        // else if((SceneManager.GetActiveScene().name == "Overworld"))
+        // {
+        //     //moveable = true;
+        // }
 
         if (moveable)
         {
@@ -84,7 +96,7 @@ public class PlayerCharacterController : MonoBehaviour
             if(moveable)
             {
                 animator.SetInteger("runState", 1);
-                playerSoundManager.PlayAudio();
+                PlayerSoundsManager.Instance.PlayAudio();
             } else {
                 animator.SetInteger("runState", 0);
             }
@@ -95,10 +107,29 @@ public class PlayerCharacterController : MonoBehaviour
         }
     }
 
+    public void SetAnimatorBattleFlag(bool flag)
+    {
+        animator.SetBool("battleIdle", flag);
+    }
+
     public void ChangeTileOn(PlayerSoundsManager.Track tile)
     {
         prevTileOn = tileOn;
         tileOn = tile;
-        playerSoundManager.SetTrack(tileOn);
+        PlayerSoundsManager.Instance.SetTrack(tileOn);
+    }
+
+    public void ToggleBattleMenu(bool flag)
+    {
+        battleMenu.SetActive(flag);
+    }
+
+    public void EndTurn()
+    {
+        if(turnManager != null)
+        {
+            Debug.Log("Player Ending Turn");
+            turnManager.IsPlayerPhase = false;
+        }
     }
 }

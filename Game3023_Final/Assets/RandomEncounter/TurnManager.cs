@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    public GameObject PlayerBattleMenu; 
+    public PlayerCharacterController Player; 
     public EnemyBehaviour enemy;
     private bool _isPlayerPhase;
     public bool IsPlayerPhase
@@ -18,12 +18,12 @@ public class TurnManager : MonoBehaviour
             _isPlayerPhase = value;
             if(_isPlayerPhase == false)
             {
-                PlayerBattleMenu.SetActive(false);
+                Player.ToggleBattleMenu(false);
                 enemy.EnableTurn(); 
             } 
             else 
             {
-                PlayerBattleMenu.SetActive(true);
+                Player.ToggleBattleMenu(true);
             }
         }
     }
