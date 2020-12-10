@@ -19,6 +19,18 @@ public class EnemyBehaviour : MonoBehaviour
 
     public ACTIONS action;
 
+    // Controls the %chance of each move happening
+
+    // move1Chance is the MAX chance for Move 1 to activate, and the MIN for Move 2
+    // move2Chance is the Max chance for Move 2 to activate, and the MIN for Move 3
+    // move3Chance is the Max chance for Move 3 to activate, and the MIN for Move 4
+
+    // Move 4 is just the left over, so whatever else does not activate Move 4 will
+
+    public int move1Chance = 25;
+    public int move2Chance = 50;
+    public int move3Chance = 75;
+
     [SerializeField]
     public float health = 100.0f;
     public float maxHealth = 100.0f;
@@ -64,7 +76,28 @@ public class EnemyBehaviour : MonoBehaviour
     IEnumerator EnemyPhaseActions()
     {
         battleMenu.SetActive(true);
-        action = (ACTIONS)Random.Range(0,(float)ACTIONS.Count);
+
+        int moveChance = Random.Range(0, 100);
+
+        if(moveChance < move1Chance)
+        {
+            StartCoroutine(AttackPlayer());
+        }
+        else if (moveChance >= move1Chance && moveChance < move2Chance)
+        {
+            StartCoroutine(FireBow());
+        }
+        else if (moveChance >= move2Chance && moveChance < move3Chance)
+        {
+            StartCoroutine(Intimidate());
+        }
+        else
+        {
+            StartCoroutine(Taunt());
+        }
+        //action = (ACTIONS)Random.Range(0,(float)ACTIONS.Count);
+
+        /*
         switch(action)
         {
             case ACTIONS.ATTACK:
@@ -83,7 +116,33 @@ public class EnemyBehaviour : MonoBehaviour
                 Debug.Log("Unknown Enemy Action");
                 break;
         }
-        
+        */
+
+        if (turnManager.enemy.health < turnManager.enemy.maxHealth / 2.0f)
+        {
+            move1Chance = 20;
+            move2Chance = 40;
+            move3Chance = 70;
+        }
+        else if (turnManager.Player.health < turnManager.Player.maxHealth / 2.0f)
+        {
+            move1Chance = 30;
+            move2Chance = 60;
+            move3Chance = 80;
+        }
+        else if (turnManager.Player.defenceSkill >= 0.3)
+        {
+            move1Chance = 20;
+            move2Chance = 40;
+            move3Chance = 80;
+        }
+        else
+        {
+            move1Chance = 25;
+            move2Chance = 50;
+            move3Chance = 75;
+        }
+
         yield return new WaitForSeconds(2.0f);
     }
 
