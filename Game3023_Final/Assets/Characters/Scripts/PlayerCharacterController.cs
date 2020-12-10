@@ -42,11 +42,16 @@ public class PlayerCharacterController : MonoBehaviour
     private PlayerSoundsManager playerSoundManager;
 
     [SerializeField]
-    public TurnManager turnManager = null; 
+    public TurnManager turnManager = null;
+    public TextBoxAnimator textBoxAnimator;  
 
     public bool moveable = true;
 
     public Collider2D feetCol;
+
+    public ParticleSystem kunaiParticle;
+    public ParticleSystem defenceUpParticle;
+    
 
     void Start()
     {
@@ -140,8 +145,14 @@ public class PlayerCharacterController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= (defenceSkill*damage); 
+        health -= (defenceSkill*damage);
+        if(health <= 0)
+        {
+            health = 0;
+            StartCoroutine(PlayerLost()); 
+        } 
         UpdateHealthBar();
+        StartCoroutine(TakeHitAnimation());
     }
 
     public void UpdateHealthBar()
@@ -174,18 +185,20 @@ public class PlayerCharacterController : MonoBehaviour
             if(hit <= accuracySkill)
             {
                 // Apple Damage
-                Debug.Log("Attacking Enemy"); 
+                Debug.Log("Attacking Enemy");
+                textBoxAnimator.AnimateText("The player has attacked for "+damage.ToString()+" damage"); 
                 turnManager.enemy.TakeDamage(damage);
             } 
             else 
             {
+                textBoxAnimator.AnimateText("The player missed");
                 Debug.Log("Missed Enemy"); 
 
             }
         }
         // Play Animation
         animator.SetBool("attack", true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3.0f);
         animator.SetBool("attack", false); 
          // Pass Turn
         EndTurn(); 
@@ -196,25 +209,57 @@ public class PlayerCharacterController : MonoBehaviour
         Debug.Log("Raising Defence"); 
         // Increase Defense Skill
         defenceSkill *= 1.05f;
+        textBoxAnimator.AnimateText("The Player is raising defence"); 
         if(defenceSkill >= 0.50f)
         {
             defenceSkill = 0.50f; 
         } 
         // Play Animation/Particle Effect
-        
-        yield return new WaitForSeconds(5.0f);
+        defenceUpParticle.Play();
+        yield return new WaitForSeconds(3.0f);
         EndTurn(); 
     }
 
     IEnumerator ThrowKunaiCoroutine()
     {
-        Debug.Log("Throwing Kunai"); 
-          // Apply 10% of Damage Level to Enemy
+        Debug.Log("Throwing Kunai");
+        textBoxAnimator.AnimateText("The player is throwing a kunai for " + (damage*0.10f).ToString() + " damage"); 
+        // Apply 10% of Damage Level to Enemy
         turnManager.enemy.TakeDamage(damage*0.10f);
         // Play Animation/Particle Effect
         animator.SetBool("kunai", true);
-        yield return new WaitForSeconds(1.0f);
+        kunaiParticle.Play();
+        yield return new WaitForSeconds(3.0f);
         animator.SetBool("kunai", false);
         EndTurn(); 
+    }
+
+    IEnumerator TakeHitAnimation()
+    {
+        animator.SetBool("hit", true);
+        yield return new WaitForSeconds(2.5f); 
+        animator.SetBool("hit", false);
+    }
+    public void StartPlayerWon()
+    {
+        StartCoroutine(PlayerWon()); 
+    }
+
+    IEnumerator PlayerWon()
+    {
+        textBoxAnimator.AnimateText("The Player has won the fight"); 
+        yield return new WaitForSeconds(3.0f);
+        textBoxAnimator.AnimateText("BushMan has fled the scene"); 
+        yield return new WaitForSeconds(3.0f);
+        GetComponent<EncounterManager>().ExitEncounter();  
+    }
+
+    IEnumerator PlayerLost()
+    {
+        textBoxAnimator.AnimateText("The Player has lost the fight"); 
+        yield return new WaitForSeconds(3.0f);
+        textBoxAnimator.AnimateText("BushMan dances in Victory!"); 
+        yield return new WaitForSeconds(3.0f);
+        GetComponent<EncounterManager>().ExitEncounter();  
     }
 }

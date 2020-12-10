@@ -47,7 +47,8 @@ public class PlayerWorldTraveller : MonoBehaviour
             GetComponent<PlayerCharacterController>().ToggleBattleMenu(true);
             FindObjectOfType<TurnManager>().Player = this.gameObject.GetComponent<PlayerCharacterController>();
             GetComponent<PlayerCharacterController>().turnManager = FindObjectOfType<TurnManager>();
-            GetComponent<PlayerCharacterController>().SetAnimatorBattleFlag(true); 
+            GetComponent<PlayerCharacterController>().SetAnimatorBattleFlag(true);
+            GetComponent<PlayerCharacterController>().textBoxAnimator = FindObjectOfType<TextBoxAnimator>(); 
              
         }
         else if(scene.name == "Overworld")
