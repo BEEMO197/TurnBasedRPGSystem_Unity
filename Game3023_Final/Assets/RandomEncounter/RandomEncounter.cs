@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.SceneManagement;
-using UnityEditor;
-using UnityEditor.Networking.PlayerConnection;
+
+
 
 public class RandomEncounter : MonoBehaviour
 {

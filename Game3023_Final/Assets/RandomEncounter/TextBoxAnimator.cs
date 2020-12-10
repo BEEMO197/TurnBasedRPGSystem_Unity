@@ -5,7 +5,7 @@ using UnityEngine;
 public class TextBoxAnimator : MonoBehaviour
 {
     [SerializeField]
-    TMPro.TextMeshProUGUI text;
+    TMPro.TextMeshProUGUI text = null;
 
     [SerializeField]
     [Range(10, 100)]
